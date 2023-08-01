@@ -1,0 +1,171 @@
+jimmy@DESKTOP-KDHQCIN MINGW64 ~/OneDrive/Desktop/git basics (strings)
+$ git branch
+  dotnet
+  main
+* strings
+
+jimmy@DESKTOP-KDHQCIN MINGW64 ~/OneDrive/Desktop/git basics (strings)
+$ touch strings.txt
+
+jimmy@DESKTOP-KDHQCIN MINGW64 ~/OneDrive/Desktop/git basics (strings)
+$ git commit -m "Stash"
+On branch strings
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+        strings.txt
+
+nothing added to commit but untracked files present (use "git add" to track)
+
+jimmy@DESKTOP-KDHQCIN MINGW64 ~/OneDrive/Desktop/git basics (strings)
+$ git add .
+
+jimmy@DESKTOP-KDHQCIN MINGW64 ~/OneDrive/Desktop/git basics (strings)
+$ git status
+On branch strings
+Changes to be committed:
+  (use "git restore --staged <file>..." to unstage)
+        new file:   strings.txt
+
+
+jimmy@DESKTOP-KDHQCIN MINGW64 ~/OneDrive/Desktop/git basics (strings)
+$ git stash
+Saved working directory and index state WIP on strings: a9ce56c Git playground
+
+jimmy@DESKTOP-KDHQCIN MINGW64 ~/OneDrive/Desktop/git basics (strings)
+$ git stash list
+stash@{0}: WIP on strings: a9ce56c Git playground
+
+jimmy@DESKTOP-KDHQCIN MINGW64 ~/OneDrive/Desktop/git basics (strings)
+$ git stash pop 0
+On branch strings
+Changes to be committed:
+  (use "git restore --staged <file>..." to unstage)
+        new file:   strings.txt
+
+Dropped refs/stash@{0} (84ba90f553161c25c6de8696fe3b79cc2d5a0e6a)
+
+jimmy@DESKTOP-KDHQCIN MINGW64 ~/OneDrive/Desktop/git basics (strings)
+$ git stash list
+
+jimmy@DESKTOP-KDHQCIN MINGW64 ~/OneDrive/Desktop/git basics (strings)
+$ git log -- oneline
+
+jimmy@DESKTOP-KDHQCIN MINGW64 ~/OneDrive/Desktop/git basics (strings)
+$ git status
+On branch strings
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+        modified:   strings.txt
+
+no changes added to commit (use "git add" and/or "git commit -a")
+
+jimmy@DESKTOP-KDHQCIN MINGW64 ~/OneDrive/Desktop/git basics (strings)
+$ git restore strings.txt
+
+jimmy@DESKTOP-KDHQCIN MINGW64 ~/OneDrive/Desktop/git basics (strings)
+$ git status
+On branch strings
+nothing to commit, working tree clean
+
+jimmy@DESKTOP-KDHQCIN MINGW64 ~/OneDrive/Desktop/git basics (strings)
+$ git stash list
+
+jimmy@DESKTOP-KDHQCIN MINGW64 ~/OneDrive/Desktop/git basics (strings)
+$ git switch dotnet
+Switched to branch 'dotnet'
+
+jimmy@DESKTOP-KDHQCIN MINGW64 ~/OneDrive/Desktop/git basics (dotnet)
+$ git commit -m "dotnet branch changes on strings"
+[dotnet 7db03a1] dotnet branch changes on strings
+ 1 file changed, 10 insertions(+)
+ create mode 100644 strings.txt
+
+jimmy@DESKTOP-KDHQCIN MINGW64 ~/OneDrive/Desktop/git basics (dotnet)
+$ git status
+On branch dotnet
+nothing to commit, working tree clean
+
+jimmy@DESKTOP-KDHQCIN MINGW64 ~/OneDrive/Desktop/git basics (dotnet)
+$ git log
+commit 7db03a10bec91f91ec67cc448c79215432067efd (HEAD -> dotnet)
+Author: Jimna254 <jimmynarokian254@gmail.com>
+Date:   Tue Aug 1 15:06:39 2023 +0300
+
+    dotnet branch changes on strings
+
+commit a9ce56c1c0edb84451f60084a14580041155b67a (origin/dotnet, main)
+Author: Jimna254 <jimmynarokian254@gmail.com>
+Date:   Tue Aug 1 14:20:08 2023 +0300
+
+    Git playground
+
+jimmy@DESKTOP-KDHQCIN MINGW64 ~/OneDrive/Desktop/git basics (dotnet)
+$ git log --oneline
+7db03a1 (HEAD -> dotnet) dotnet branch changes on strings
+a9ce56c (origin/dotnet, main) Git playground
+
+jimmy@DESKTOP-KDHQCIN MINGW64 ~/OneDrive/Desktop/git basics (dotnet)
+$ git push origin dotnet
+Enumerating objects: 4, done.
+Counting objects: 100% (4/4), done.
+Delta compression using up to 4 threads
+Compressing objects: 100% (3/3), done.
+Writing objects: 100% (3/3), 592 bytes | 592.00 KiB/s, done.
+Total 3 (delta 1), reused 0 (delta 0), pack-reused 0
+remote: Resolving deltas: 100% (1/1), completed with 1 local object.
+To https://github.com/Jimna254/gitbasics.git
+   a9ce56c..7db03a1  dotnet -> dotnet
+
+jimmy@DESKTOP-KDHQCIN MINGW64 ~/OneDrive/Desktop/git basics (dotnet)
+$ git branch
+* dotnet
+  main
+  strings
+
+jimmy@DESKTOP-KDHQCIN MINGW64 ~/OneDrive/Desktop/git basics (dotnet)
+$ git switch strings
+Switched to branch 'strings'
+
+jimmy@DESKTOP-KDHQCIN MINGW64 ~/OneDrive/Desktop/git basics (strings)
+$ git merge strings
+Auto-merging strings.txt
+CONFLICT (add/add): Merge conflict in strings.txt
+Automatic merge failed; fix conflicts and then commit the result.
+
+jimmy@DESKTOP-KDHQCIN MINGW64 ~/OneDrive/Desktop/git basics (main|MERGING)
+$ git log --oneline
+49aea3c (HEAD -> main, origin/main) Merge branch 'strings'
+7db03a1 (origin/dotnet, dotnet) dotnet branch changes on strings
+3b14c60 (origin/strings, strings)  added some text
+a9ce56c Git playground
+
+jimmy@DESKTOP-KDHQCIN MINGW64 ~/OneDrive/Desktop/git basics (main)
+$ git add .
+
+jimmy@DESKTOP-KDHQCIN MINGW64 ~/OneDrive/Desktop/git basics (main)
+$ git commit -m "C# program"
+[main 845844b] C# program
+ 1 file changed, 37 insertions(+)
+
+jimmy@DESKTOP-KDHQCIN MINGW64 ~/OneDrive/Desktop/git basics (main)
+$ git push origin main
+Enumerating objects: 5, done.
+Counting objects: 100% (5/5), done.
+Delta compression using up to 4 threads
+Compressing objects: 100% (3/3), done.
+Writing objects: 100% (3/3), 688 bytes | 344.00 KiB/s, done.
+Total 3 (delta 1), reused 0 (delta 0), pack-reused 0
+remote: Resolving deltas: 100% (1/1), completed with 1 local object.
+To https://github.com/Jimna254/gitbasics.git
+   49aea3c..845844b  main -> main
+
+jimmy@DESKTOP-KDHQCIN MINGW64 ~/OneDrive/Desktop/git basics (main)
+$ git log --oneline
+845844b (HEAD -> main, origin/main) C# program
+49aea3c Merge branch 'strings'
+7db03a1 (origin/dotnet, dotnet) dotnet branch changes on strings
+3b14c60 (origin/strings, strings)  added some text
+a9ce56c Git playground
+
+jimmy@DESKTOP-KDHQCIN MINGW64 ~/OneDrive/Desktop/git basics (main)
