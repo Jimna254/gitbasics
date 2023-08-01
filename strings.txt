@@ -1,0 +1,1 @@
+Intern is used to save on memory. It assigns strings with the same varable name the same value
